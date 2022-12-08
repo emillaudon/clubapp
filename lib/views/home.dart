@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../services/qr_service.dart';
 import '../widgets/qr_presenter.dart';
+import 'package:qr/qr.dart';
+import '../models/qr_code.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -11,30 +13,36 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
+  final QrService _qrService = QrService();
+  Widget qrCode = Container();
+
+  void newQrCode() {
     setState(() {
-      
+      qrCode = _qrService.createQrImage(const Qr('f', 'f', 'f'));
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            Container(
+              color: Colors.blue,
+              height: 200,
+              width: 200,
+              child: qrCode
+            ),
             ElevatedButton(
               child: const Text('f'), 
-              onPressed: () => print('f'),),
+              onPressed: () => newQrCode(),),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: newQrCode,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), 
