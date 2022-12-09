@@ -18,7 +18,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void newQrCode() {
     setState(() {
-      qrCode = _qrService.createQrImage(const Qr('f', 'f', 'f'));
+      qrCode = _qrService.createQrImage(const Qr(subject: 'f', receiver: 'f@ff.se', body: 'f'));
     });
   }
 
@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
-              color: Colors.blue,
+              color: Colors.white,
               height: 200,
               width: 200,
               child: qrCode

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class QrPresenter extends StatefulWidget {
   const QrPresenter({Key? key}) : super(key: key);
 
+
+
   @override
   State<QrPresenter> createState() => _QrPresenterState();
 }
