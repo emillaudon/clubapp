@@ -1,7 +1,6 @@
+import 'package:clubapp/views/qr_creation.dart';
 import 'package:flutter/material.dart';
 import '../services/qr_service.dart';
-import '../widgets/qr_presenter.dart';
-import 'package:qr/qr.dart';
 import '../models/qr_code.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -17,6 +16,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget qrCode = Container();
 
   void newQrCode() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const QrCreation())
+    );
     setState(() {
       qrCode = _qrService.createQrImage(const Qr(subject: 'f', receiver: 'f@ff.se', body: 'f'));
     });
