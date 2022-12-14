@@ -15,14 +15,22 @@ class _MyHomePageState extends State<MyHomePage> {
   final QrService _qrService = QrService();
   Widget qrCode = Container();
 
-  void newQrCode() {
-    Navigator.push(
+  void newQrCode() async {
+    final qr = await goToQrCreation();
+    if (qr != null) {
+      setState(() {
+        qrCode = _qrService.createQrImage(qr);
+      });
+    }
+  }
+
+  Future<Qr> goToQrCreation() async {
+    final qrCode = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const QrCreation())
+      MaterialPageRoute(builder: (context) => QrCreation())
     );
-    setState(() {
-      qrCode = _qrService.createQrImage(const Qr(subject: 'f', receiver: 'f@ff.se', body: 'f'));
-    });
+
+    return qrCode;
   }
 
   @override
@@ -39,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: qrCode
             ),
             ElevatedButton(
-              child: const Text('f'), 
+              child: const Text('Skapa Qr'), 
               onPressed: () => newQrCode(),),
           ],
         ),

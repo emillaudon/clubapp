@@ -1,48 +1,69 @@
 import 'package:flutter/material.dart';
+import '../models/qr_code.dart';
 
 class QrCreation extends StatelessWidget {
-  const QrCreation({Key? key}) : super(key: key);
+  QrCreation({Key? key}) : super(key: key);
+  TextEditingController receiverController = TextEditingController();
+  TextEditingController subjectController = TextEditingController();
+  TextEditingController bodyController = TextEditingController();
 
-  void goBack(context) {
-    Navigator.pop(context);
+  void createQrAndGoBack(context) {
+    final qr = createQr();
+    Navigator.pop(context, qr);
+  }
+
+  Qr createQr() {
+    final String receiver = receiverController.text;
+    final String subject = subjectController.text;
+    final String body = bodyController.text;
+
+    final Qr qr = Qr(receiver: receiver, subject: subject, body: body);
+
+    return qr;
   }
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.red,
       body: SingleChildScrollView(
-        child:  Container(
+        child:  Center(
+          child: Container(
+          width: width * 0.9,
           height: height,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children:  [
-              const TextField(
-                decoration: InputDecoration(
+                TextField(
+                controller: receiverController,
+                decoration: const InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
                   hintText: 'Mottagare'
                 ),),
-                const TextField(
-                decoration: InputDecoration(
+                TextField(
+                  controller: subjectController,
+                decoration: const InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
                   hintText: 'Rubrik'
                 ),),
-                const TextField(
+                TextField(
+                  controller: bodyController,
                 maxLines: 5,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
                   hintText: 'Meddelande'
                 ),),
                 ElevatedButton(
-              child: const Text('f'), 
-              onPressed: () => goBack(context),)
+              child: const Text('FÄRDIG'), 
+              onPressed: () => createQrAndGoBack(context),)
             ]),
-          )
+          ),)
         ),
     );
   }
