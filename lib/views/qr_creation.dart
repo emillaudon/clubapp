@@ -4,6 +4,7 @@ import '../models/qr_code.dart';
 class QrCreation extends StatelessWidget {
   QrCreation({Key? key}) : super(key: key);
   TextEditingController receiverController = TextEditingController();
+  TextEditingController secondReceiverController = TextEditingController();
   TextEditingController subjectController = TextEditingController();
   TextEditingController bodyController = TextEditingController();
 
@@ -13,7 +14,9 @@ class QrCreation extends StatelessWidget {
   }
 
   Qr createQr() {
-    final String receiver = receiverController.text;
+    final String firstReceiver = receiverController.text;
+    final String secondReceiver = secondReceiverController.text;
+    final String receiver = secondReceiver != "" ? '$firstReceiver,$secondReceiver' : firstReceiver;
     final String subject = subjectController.text;
     final String body = bodyController.text;
 
@@ -27,6 +30,8 @@ class QrCreation extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
+    secondReceiverController.text = 'willyshandelsklubb@gmail.com';
+
     return Scaffold(
       backgroundColor: Colors.red,
       body: SingleChildScrollView(
@@ -39,6 +44,13 @@ class QrCreation extends StatelessWidget {
             children:  [
                 TextField(
                 controller: receiverController,
+                decoration: const InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Mottagare'
+                ),),
+                TextField(
+                controller: secondReceiverController,
                 decoration: const InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
