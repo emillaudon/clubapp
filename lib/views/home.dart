@@ -20,6 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (qr != null) {
       setState(() {
         qrCode = _qrService.createQrImage(qr);
+        //TODO:Return qr presenter
       });
     }
   }
@@ -41,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            //TODO: replace with qr presenter
             Container(
               color: Colors.white,
               height: 200,
