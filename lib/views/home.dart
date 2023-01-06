@@ -2,6 +2,7 @@ import 'package:clubapp/views/qr_creation.dart';
 import 'package:flutter/material.dart';
 import '../services/qr_service.dart';
 import '../models/qr_code.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -37,29 +38,50 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            //TODO: replace with qr presenter
-            Container(
-              color: Colors.white,
-              height: 200,
-              width: 200,
-              child: qrCode
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: const Color(0xFFFFB6B6),
+        selectedItemColor: Colors.black,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        backgroundColor: Theme.of(context).bottomAppBarColor,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Hem',
             ),
-            ElevatedButton(
-              child: const Text('Skapa Qr'), 
-              onPressed: () => newQrCode(),),
-          ],
-        ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add),
+              label: 'Ny',
+              ),
+              BottomNavigationBarItem(
+              icon: Icon(Icons.category),
+              label: 'C',
+              ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: newQrCode,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
+      body: Stack(
+          children: [
+            SvgPicture.asset(
+              'assets/images/backgrounds/background_home.svg',
+              ),
+            Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                //TODO: replace with qr presenter
+                Container(
+                  height: 200,
+                  width: 200,
+                  child: qrCode
+                ),
+                ElevatedButton(
+                  child: const Text('Skapa Qr'), 
+                  onPressed: () => newQrCode(),),
+              ],
+          ),
+        ),
+          ],
+      ),
     );
   }
 }
