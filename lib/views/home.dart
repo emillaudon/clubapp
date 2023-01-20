@@ -45,16 +45,16 @@ class _MyHomePageState extends State<MyHomePage> {
         showUnselectedLabels: false,
         backgroundColor: Theme.of(context).bottomAppBarColor,
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Hem',
-            ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.add),
+              icon: Icon(Icons.home, size: 40.0,),
+              label: 'Hem',
+              ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add, size: 40.0,),
               label: 'Ny',
               ),
               BottomNavigationBarItem(
-              icon: Icon(Icons.category),
+              icon: Icon(Icons.category, size: 40.0,),
               label: 'C',
               ),
         ],
