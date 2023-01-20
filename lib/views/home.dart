@@ -35,10 +35,19 @@ class _MyHomePageState extends State<MyHomePage> {
     return qrCode;
   }
 
+  int _currentIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
         unselectedItemColor: const Color(0xFFFFB6B6),
         selectedItemColor: Colors.black,
         showSelectedLabels: false,
@@ -58,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
               label: 'C',
               ),
         ],
+        onTap: _onItemTapped,
       ),
       body: Stack(
           children: [
