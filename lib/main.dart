@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         primaryColor: const Color(0xFFFF3E3E),
         bottomAppBarColor: const Color(0xFFFF4155),
         scaffoldBackgroundColor: const Color(0xFFFF3E3E),
-        buttonTheme: const ButtonThemeData(buttonColor: Color(0xFFFFB1B1))
+        buttonTheme: const ButtonThemeData(buttonColor: Color(0xFFFFB1B1)),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );

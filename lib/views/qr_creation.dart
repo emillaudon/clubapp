@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/qr_code.dart';
+import 'package:flutter_svg/svg.dart';
 
 class QrCreation extends StatelessWidget {
   QrCreation({Key? key}) : super(key: key);
@@ -36,46 +37,123 @@ class QrCreation extends StatelessWidget {
       backgroundColor: Colors.red,
       body: SingleChildScrollView(
         child:  Center(
-          child: Container(
-          width: width * 0.9,
-          height: height,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children:  [
-                TextField(
-                controller: receiverController,
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: 'Mottagare'
-                ),),
-                TextField(
-                controller: secondReceiverController,
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: 'Mottagare'
-                ),),
-                TextField(
-                  controller: subjectController,
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: 'Rubrik'
-                ),),
-                TextField(
-                  controller: bodyController,
-                maxLines: 5,
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: 'Meddelande'
-                ),),
-                ElevatedButton(
-              child: const Text('FÄRDIG'), 
-              onPressed: () => createQrAndGoBack(context),)
-            ]),
-          ),)
+          child:
+          Stack(
+            children: [
+              SvgPicture.asset(
+                'assets/images/backgrounds/background_home.svg',
+              ),
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.only(top: 50.0),
+                  width: width * 0.9,
+                  height: height,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children:  [
+                        const Text('Ny Kod',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 40.0,
+                              color: Colors.white
+                          ),),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Mottagare',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15.0,
+                                color: Colors.white
+                            ),
+                          ),
+                        ),
+                        TextField(
+                          controller: receiverController,
+                          decoration: const InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white70,
+                              hintText: ''
+                          ),),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextField(
+                          controller: secondReceiverController,
+                          decoration: const InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white70,
+                              hintText: ''
+                          ),),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Rubrik',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15.0,
+                                color: Colors.white
+                            ),
+                          ),
+                        ),
+                        TextField(
+                          controller: subjectController,
+                          decoration: const InputDecoration(
+                              filled: true,
+                              fillColor: Colors.white70,
+                              hintText: ''
+                          ),),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Meddelande',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15.0,
+                                color: Colors.white
+                            ),
+                          ),
+                        ),
+                        TextField(
+                          controller: bodyController,
+                          maxLines: 5,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white70,
+                              hintText: ''
+                          ),),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.black,
+                              padding: const EdgeInsets.symmetric(horizontal: 140.0, vertical: 15.0),
+                              textStyle: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0
+                              )
+                          ),
+                          child: const Text('FÄRDIG'),
+                          onPressed: () => createQrAndGoBack(context),)
+                      ]),
+                ),
+              )
+            ],
+          ),
+            )
         ),
     );
   }
