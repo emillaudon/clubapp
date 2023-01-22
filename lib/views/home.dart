@@ -20,7 +20,17 @@ class _MyHomePageState extends State<MyHomePage> {
     final qr = await goToQrCreation();
     if (qr != null) {
       setState(() {
-        qrCode = _qrService.createQrImage(qr);
+        final qrCodeContainer = Container(
+          padding: EdgeInsets.all(10.0),
+          height: 100,
+          width: 100,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(10.0))
+          ),
+          child: _qrService.createQrImage(qr),
+        );
+        qrCode = qrCodeContainer;
         //TODO:Return qr presenter
       });
     }
@@ -41,6 +51,10 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _currentIndex = index;
     });
+
+    if (index == 1) {
+      newQrCode();
+    }
   }
 
   @override
@@ -80,13 +94,10 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 //TODO: replace with qr presenter
                 Container(
-                  height: 200,
-                  width: 200,
+                  height: 250,
+                  width: 250,
                   child: qrCode
                 ),
-                ElevatedButton(
-                  child: const Text('Skapa Qr'), 
-                  onPressed: () => newQrCode(),),
               ],
           ),
         ),

@@ -11,7 +11,7 @@ class QrService {
           version: QrVersions.auto,
           size: 320,
           gapless: false,
-          embeddedImage: const AssetImage('assets/images/whk.png'),
+          //embeddedImage: const AssetImage('assets/images/whk.png'),
           embeddedImageStyle: QrEmbeddedImageStyle(size: const Size(50, 20)),
      );
   }
