@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class QrService {
   
-  QrImage createQrImage(Qr qrCode) {
+  QrImage createQrImage({required Qr qrCode}) {
     // Return QR code
     return QrImage(
           data: qrCode.formatQrData(),

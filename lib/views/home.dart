@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../services/qr_service.dart';
 import '../models/qr_code.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../widgets/qr_presenter.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -20,18 +21,8 @@ class _MyHomePageState extends State<MyHomePage> {
     final qr = await goToQrCreation();
     if (qr != null) {
       setState(() {
-        final qrCodeContainer = Container(
-          padding: EdgeInsets.all(10.0),
-          height: 100,
-          width: 100,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(10.0))
-          ),
-          child: _qrService.createQrImage(qr),
-        );
-        qrCode = qrCodeContainer;
-        //TODO:Return qr presenter
+        final qrPresenter = QrPresenter(qrCode: qr);
+        qrCode = qrPresenter;
       });
     }
   }
@@ -85,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Stack(
           children: [
+            //Background image
             SvgPicture.asset(
               'assets/images/backgrounds/background_home.svg',
               ),
